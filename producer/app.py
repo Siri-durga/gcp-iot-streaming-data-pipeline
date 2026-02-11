@@ -21,7 +21,9 @@ class Config:
     PUBLISH_INTERVAL = 1  # seconds
 
 
-def generate_sensor_data(device_id: str) -> dict:
+from typing import Dict, Union
+
+def generate_sensor_data(device_id: str) -> Dict[str, Union[str, float]]:
     """Generates simulated IoT sensor data."""
     return {
         "device_id": device_id,
@@ -31,7 +33,14 @@ def generate_sensor_data(device_id: str) -> dict:
     }
 
 def publish_message(publisher, topic_path, data):
-    """Publishes a message to the Pub/Sub topic."""
+    """
+    Publishes a message to the Pub/Sub topic.
+    
+    Args:
+        publisher: The Pub/Sub publisher client.
+        topic_path: The fully qualified topic path.
+        data: The dictionary data to publish.
+    """
     json_data = json.dumps(data).encode("utf-8")
     
     try:
