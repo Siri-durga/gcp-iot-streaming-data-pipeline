@@ -178,8 +178,8 @@ def main():
 
     # Subscriber setup
     subscriber = pubsub_v1.SubscriberClient()
-    subscription_path = subscriber.subscription_path(PROJECT_ID, SUBSCRIPTION_ID)
-    topic_path = subscriber.topic_path(PROJECT_ID, TOPIC_ID)
+    subscription_path = subscriber.subscription_path(Config.PROJECT_ID, Config.SUBSCRIPTION_ID)
+    topic_path = subscriber.topic_path(Config.PROJECT_ID, Config.TOPIC_ID)
 
     # Create subscription if not exists (for emulator)
     try:
