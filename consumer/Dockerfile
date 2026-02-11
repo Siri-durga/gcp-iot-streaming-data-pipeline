@@ -1,5 +1,7 @@
 FROM python:3.9-slim-buster
 
+LABEL maintainer="siri-durga"
+
 WORKDIR /app
 
 COPY requirements.txt .
