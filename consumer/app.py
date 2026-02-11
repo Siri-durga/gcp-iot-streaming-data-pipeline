@@ -19,17 +19,16 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# Configuration
-PROJECT_ID = os.getenv('GCP_PROJECT_ID', 'test-project')
-TOPIC_ID = os.getenv('PUBSUB_TOPIC_RAW', 'iot-sensor-data-raw')
-SUBSCRIPTION_ID = 'iot-sensor-sub'
-MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
-MYSQL_USER = os.getenv('MYSQL_USER', 'root')
-MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'secret')
-MYSQL_DATABASE = os.getenv('MYSQL_DATABASE', 'iot_data')
-
-BATCH_SIZE = 10
-BATCH_TIMEOUT = 5  # seconds
+class Config:
+    PROJECT_ID = os.getenv('GCP_PROJECT_ID', 'test-project')
+    TOPIC_ID = os.getenv('PUBSUB_TOPIC_RAW', 'iot-sensor-data-raw')
+    SUBSCRIPTION_ID = 'iot-sensor-sub'
+    MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
+    MYSQL_USER = os.getenv('MYSQL_USER', 'root')
+    MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'secret')
+    MYSQL_DATABASE = os.getenv('MYSQL_DATABASE', 'iot_data')
+    BATCH_SIZE = 10
+    BATCH_TIMEOUT = 5  # seconds
 
 class Databasehandler:
     def __init__(self):
@@ -39,10 +38,10 @@ class Databasehandler:
     def connect(self):
         try:
             self.connection = mysql.connector.connect(
-                host=MYSQL_HOST,
-                user=MYSQL_USER,
-                password=MYSQL_PASSWORD,
-                database=MYSQL_DATABASE
+                host=Config.MYSQL_HOST,
+                user=Config.MYSQL_USER,
+                password=Config.MYSQL_PASSWORD,
+                database=Config.MYSQL_DATABASE
             )
             if self.connection.is_connected():
                 logging.info("Connected to MySQL database")
