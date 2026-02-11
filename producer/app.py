@@ -6,11 +6,14 @@ import logging
 from datetime import datetime
 from google.cloud import pubsub_v1
 
+def setup_logging():
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+setup_logging()
 
 class Config:
     PROJECT_ID = os.getenv('GCP_PROJECT_ID', 'test-project')
