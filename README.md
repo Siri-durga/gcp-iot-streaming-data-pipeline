@@ -1,5 +1,7 @@
 # Real-Time IoT Sensor Data Ingestion Pipeline
 
+![CI Status](https://github.com/Siri-durga/gcp-iot-streaming-data-pipeline/actions/workflows/ci.yml/badge.svg)
+
 This project implements a robust, real-time data pipeline for ingesting, validating, and storing simulated IoT sensor data. It leverages Google Cloud Pub/Sub (Emulator) for messaging and MySQL for persistent storage, fully containerized with Docker.
 
 ## Project Overview
