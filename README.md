@@ -13,14 +13,38 @@ The pipeline consists of three main components:
 
 ## Architecture
 
-Data Flow:
-`Producer -> [Pub/Sub Topic: iot-sensor-data-raw] -> Consumer -> (Validation) -> MySQL [Table: sensor_readings]`
+
+```mermaid
+graph LR
+    P[Producer] -->|Publishes JSON| T(Pub/Sub Topic)
+    subgraph Google Cloud Pub/Sub
+        T
+        S(Subscription)
+        T --> S
+    end
+    S -->|Pulls Data| C[Consumer]
+    C -->|Validates & Batches| D[(MySQL Database)]
+    
+    style P fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style T fill:#ddf,stroke:#333,stroke-width:2px
+    style D fill:#dfd,stroke:#333,stroke-width:2px
+```
 
 Key Features:
 -   **Event-Driven**: Independent microservices.
 -   **Data Quality**: Strict validation of schema, types, and ranges.
 -   **Resilience**: Error handling, retry logic, and NACK/ACK mechanisms.
 -   **Performance**: Batch insertion for database efficiency.
+
+
+## Screenshots
+
+![Terminal Logs](docs/terminal_logs.png)
+*Figure 1: Pipeline running with producer and consumer logs.*
+
+![Database Results](docs/database_results.png)
+*Figure 2: Verified data insertion in MySQL.*
 
 ## Prerequisites
 
