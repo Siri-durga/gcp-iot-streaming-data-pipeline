@@ -53,6 +53,15 @@ class Databasehandler:
             self.connection = None
 
     def insert_batch(self, values: List[tuple]) -> bool:
+        """
+        Inserts a batch of sensor readings into the database.
+
+        Args:
+            values: A list of tuples containing sensor data.
+        
+        Returns:
+            bool: True if insertion was successful, False otherwise.
+        """
         if not self.connection or not self.connection.is_connected():
             logging.warning("Database connection lost, reconnecting...")
             self.connect()
@@ -77,8 +86,19 @@ class Databasehandler:
             logging.error(f"Failed to insert batch: {e}")
             return False
 
-def validate_message(data: dict) -> dict:
-    """Validates the incoming message data."""
+def validate_message(data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Validates the incoming message data against schema and range rules.
+
+    Args:
+        data: The dictionary containing raw sensor data.
+
+    Returns:
+        Dict: The validated and transformed data.
+
+    Raises:
+        ValueError: If validation fails.
+    """
     required_fields = ['device_id', 'timestamp_utc', 'temperature_celsius', 'humidity_percent']
     
     # Check existence
