@@ -71,3 +71,23 @@ The Consumer service enforces the following rules:
 -   `consumer/`: Python consumer application.
 -   `docker-compose.yml`: Docker orchestration.
 -   `db_init.sql`: Database initialization script.
+
+## Troubleshooting
+
+### Pub/Sub Emulator Issues
+If the emulator fails to start, ensure port 8085 is free. You can change the port in `docker-compose.yml`.
+
+### Database Connection
+If the consumer takes too long to connect, checked the `mysql` service health. The consumer includes a retry mechanism.
+
+### Data Not Appearing
+Verify that the `iot-sensor-data-raw` topic exists in the emulator. The consumer logs will indicate if it is receiving messages.
+
+## Contributing
+
+1.  Fork the repository.
+2.  Create a feature branch (`git checkout -b feature/amazing-feature`).
+3.  Commit your changes (`git commit -m 'Add some amazing feature'`).
+4.  Push to the branch (`git push origin feature/amazing-feature`).
+5.  Open a Pull Request.
+
