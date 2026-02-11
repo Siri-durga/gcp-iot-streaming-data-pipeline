@@ -12,10 +12,11 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# Configuration
-PROJECT_ID = os.getenv('GCP_PROJECT_ID', 'test-project')
-TOPIC_ID = os.getenv('PUBSUB_TOPIC_RAW', 'iot-sensor-data-raw')
-PUBLISH_INTERVAL = 1  # seconds
+class Config:
+    PROJECT_ID = os.getenv('GCP_PROJECT_ID', 'test-project')
+    TOPIC_ID = os.getenv('PUBSUB_TOPIC_RAW', 'iot-sensor-data-raw')
+    PUBLISH_INTERVAL = 1  # seconds
+
 
 def generate_sensor_data(device_id: str) -> dict:
     """Generates simulated IoT sensor data."""
@@ -40,7 +41,7 @@ def publish_message(publisher, topic_path, data):
 def main():
     # Initialize Pub/Sub publisher
     publisher = pubsub_v1.PublisherClient()
-    topic_path = publisher.topic_path(PROJECT_ID, TOPIC_ID)
+    topic_path = publisher.topic_path(Config.PROJECT_ID, Config.TOPIC_ID)
 
     logging.info(f"Starting producer for topic: {topic_path}")
 
@@ -52,7 +53,7 @@ def main():
             device_id = random.choice(devices)
             data = generate_sensor_data(device_id)
             publish_message(publisher, topic_path, data)
-            time.sleep(PUBLISH_INTERVAL)
+            time.sleep(Config.PUBLISH_INTERVAL)
         except KeyboardInterrupt:
             logging.info("Producer stopped by user.")
             break
