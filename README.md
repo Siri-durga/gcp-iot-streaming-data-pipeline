@@ -24,8 +24,11 @@ Key Features:
 
 ## Prerequisites
 
--   Docker and Docker Compose installed.
--   Python 3.9+ (for local non-docker testing only).
+-   **Docker**: v20.10+
+-   **Docker Compose**: v1.29+
+-   **Git**: For version control.
+-   **Python 3.9+**: Optional, for running local tests without Docker.
+
 
 ## Setup & Running
 
