@@ -1,3 +1,4 @@
+from __future__ import annotations
 import os
 import time
 import json
@@ -6,7 +7,7 @@ import threading
 from concurrent.futures import TimeoutError
 from datetime import datetime
 from queue import Queue, Empty
-from typing import List, Tuple
+from typing import List, Tuple, Dict, Any, Union
 
 from google.cloud import pubsub_v1
 import mysql.connector
