@@ -32,7 +32,9 @@ class Config:
     BATCH_TIMEOUT = 5  # seconds
 
 class Databasehandler:
+    """Note: Class name kept as Databasehandler to match existing code, typically should be DatabaseHandler."""
     def __init__(self):
+        """Initialize the database handler."""
         self.connection = None
         self.connect()
 
