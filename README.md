@@ -40,7 +40,7 @@ Key Features:
 
 ## Screenshots
 
-![Terminal Logs](docs/terminal_logs.png)
+![Terminal Logs](docs/terminal_logs1.png)
 *Figure 1: Pipeline running with producer and consumer logs.*
 
 ![Database Results](docs/database_results.png)

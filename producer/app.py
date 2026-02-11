@@ -57,6 +57,14 @@ def main():
     publisher = pubsub_v1.PublisherClient()
     topic_path = publisher.topic_path(Config.PROJECT_ID, Config.TOPIC_ID)
 
+    # Create topic if it doesn't exist (useful for emulator/dev)
+    try:
+        publisher.create_topic(request={"name": topic_path})
+        logging.info(f"Created topic: {topic_path}")
+    except Exception as e:
+        # 409 means topic already exists, which is fine
+        logging.info(f"Topic {topic_path} already exists or could not be created: {e}")
+
     logging.info(f"Starting producer for topic: {topic_path}")
 
     # Simulate multiple devices
