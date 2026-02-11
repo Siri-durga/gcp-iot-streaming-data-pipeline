@@ -1,3 +1,4 @@
+-- Initialize the sensor_readings table
 CREATE TABLE IF NOT EXISTS sensor_readings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     device_id VARCHAR(255) NOT NULL,
