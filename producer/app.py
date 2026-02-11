@@ -39,7 +39,7 @@ def publish_message(publisher, topic_path, data):
     Publishes a message to the Pub/Sub topic.
     
     Args:
-        publisher: The Pub/Sub publisher client.
+        publisher: The Pub/Sub publisher client (Any).
         topic_path: The fully qualified topic path.
         data: The dictionary data to publish.
     """
