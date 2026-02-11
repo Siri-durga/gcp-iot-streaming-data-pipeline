@@ -1,8 +1,10 @@
+from __future__ import annotations
 import os
 import time
 import json
 import random
 import logging
+from typing import Dict, Union, Any
 from datetime import datetime
 from google.cloud import pubsub_v1
 
