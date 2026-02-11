@@ -1,0 +1,6 @@
+{
+  "device_id": "example-device",
+  "timestamp_utc": "2023-10-01T12:00:00Z",
+  "temperature_celsius": 22.5,
+  "humidity_percent": 45.0
+}
