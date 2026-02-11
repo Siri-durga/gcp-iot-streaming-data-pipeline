@@ -136,8 +136,8 @@ def worker(queue: Queue, db_handler: Databasehandler):
             pass
             
         current_time = time.time()
-        is_batch_full = len(batch_data) >= BATCH_SIZE
-        is_timeout = (current_time - last_flush_time) >= BATCH_TIMEOUT and len(batch_data) > 0
+        is_batch_full = len(batch_data) >= Config.BATCH_SIZE
+        is_timeout = (current_time - last_flush_time) >= Config.BATCH_TIMEOUT and len(batch_data) > 0
         
         if is_batch_full or is_timeout:
             if batch_data:
